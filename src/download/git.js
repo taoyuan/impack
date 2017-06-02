@@ -1,8 +1,8 @@
 const debug = require('debug')('impack:download:git');
-const downloadUrl = require("download");
-const gitclone = require("git-clone");
+const downloadUrl = require('download');
+const gitclone = require('git-clone');
 const PromiseA = require('bluebird');
-const rm = require("fs-extra").removeSync;
+const rm = require('fs-extra').removeSync;
 
 /**
  * Expose `download`.
@@ -21,9 +21,9 @@ module.exports = download;
  */
 
 function download(target, dest, opts, fn) {
-	if (typeof opts === "function") {
+	if (typeof opts === 'function') {
 		fn = opts;
-		opts = null
+		opts = null;
 	}
 	opts = opts || {};
 	let clone = opts.clone || false;
@@ -32,7 +32,7 @@ function download(target, dest, opts, fn) {
 	let url = getUrl(repo, clone);
 	if (url && typeof url === 'object' && url.url) {
 		if (typeof url.clone === 'boolean') {
-			clone = url.clone
+			clone = url.clone;
 		}
 		url = url.url;
 	}
@@ -41,10 +41,10 @@ function download(target, dest, opts, fn) {
 		if (clone) {
 			const checkout = repo.checkout && repo.checkout !== 'master' ? repo.checkout : null;
 			debug('Cloning from:', url, checkout ? '#' + checkout : '');
-			return PromiseA.fromCallback(cb => gitclone(url, dest, {checkout}, cb)).then(() => rm(dest + "/.git"));
+			return PromiseA.fromCallback(cb => gitclone(url, dest, {checkout}, cb)).then(() => rm(dest + '/.git'));
 		} else {
 			debug('Downloading from:', url);
-			return PromiseA.resolve(downloadUrl(url, dest, {extract: true, strip: 1, mode: "666", headers: {accept: "application/zip"}}));
+			return PromiseA.resolve(downloadUrl(url, dest, {extract: true, strip: 1, mode: '666', headers: {accept: 'application/zip'}}));
 		}
 	}).asCallback(fn);
 }
@@ -59,21 +59,21 @@ function download(target, dest, opts, fn) {
 function normalize(repo) {
 	const regex = /^((github|gitlab|bitbucket|oschina):)?((.+):)?([^/]+)\/([^#]+)(#(.+))?$/;
 	const match = regex.exec(repo);
-	const type = match[2] || "github";
+	const type = match[2] || 'github';
 	let host = match[4] || null;
 	const owner = match[5];
 	const name = match[6];
 	const checkout = match[8] || 'master';
 
 	if (host === null) {
-		if (type === "github") {
-			host = "github.com";
-		} else if (type === "gitlab") {
-			host = "gitlab.com";
-		} else if (type === "bitbucket") {
-			host = "bitbucket.com";
+		if (type === 'github') {
+			host = 'github.com';
+		} else if (type === 'gitlab') {
+			host = 'gitlab.com';
+		} else if (type === 'bitbucket') {
+			host = 'bitbucket.com';
 		} else if (type === 'oschina') {
-			host = "git.oschina.net";
+			host = 'git.oschina.net';
 		}
 	}
 
@@ -83,7 +83,7 @@ function normalize(repo) {
 		owner,
 		name,
 		checkout
-	}
+	};
 }
 
 /**
@@ -95,9 +95,9 @@ function normalize(repo) {
 
 function addProtocol(url) {
 	if (!/^(f|ht)tps?:\/\//i.test(url))
-		url = "https://" + url;
+		url = 'https://' + url;
 
-	return url
+	return url;
 }
 
 /**
@@ -111,19 +111,19 @@ function addProtocol(url) {
 function getUrl(repo, clone) {
 	let url;
 
-	if (repo.type === "github") {
+	if (repo.type === 'github') {
 		url = github(repo, clone);
-	} else if (repo.type === "gitlab") {
+	} else if (repo.type === 'gitlab') {
 		url = gitlab(repo, clone);
-	} else if (repo.type === "bitbucket") {
+	} else if (repo.type === 'bitbucket') {
 		url = bitbucket(repo, clone);
-	} else if (repo.type === "oschina") {
+	} else if (repo.type === 'oschina') {
 		url = oschina(repo, clone);
 	} else {
 		url = github(repo, clone);
 	}
 
-	return url
+	return url;
 }
 
 /**
@@ -138,11 +138,11 @@ function github(repo, clone) {
 	let url;
 
 	if (clone)
-		url = "git@" + repo.host + ":" + repo.owner + "/" + repo.name + ".git";
+		url = 'git@' + repo.host + ':' + repo.owner + '/' + repo.name + '.git';
 	else
-		url = addProtocol(repo.host) + "/" + repo.owner + "/" + repo.name + "/archive/" + repo.checkout + ".zip";
+		url = addProtocol(repo.host) + '/' + repo.owner + '/' + repo.name + '/archive/' + repo.checkout + '.zip';
 
-	return url
+	return url;
 }
 
 /**
@@ -157,11 +157,11 @@ function gitlab(repo, clone) {
 	let url;
 
 	if (clone)
-		url = "git@" + repo.host + ":" + repo.owner + "/" + repo.name + ".git";
+		url = 'git@' + repo.host + ':' + repo.owner + '/' + repo.name + '.git';
 	else
-		url = addProtocol(repo.host) + "/" + repo.owner + "/" + repo.name + "/repository/archive.zip?ref=" + repo.checkout;
+		url = addProtocol(repo.host) + '/' + repo.owner + '/' + repo.name + '/repository/archive.zip?ref=' + repo.checkout;
 
-	return url
+	return url;
 }
 
 /**
@@ -176,11 +176,11 @@ function bitbucket(repo, clone) {
 	let url;
 
 	if (clone)
-		url = "git@" + repo.host + ":" + repo.owner + "/" + repo.name + ".git";
+		url = 'git@' + repo.host + ':' + repo.owner + '/' + repo.name + '.git';
 	else
-		url = addProtocol(repo.host) + "/" + repo.owner + "/" + repo.name + "/get/" + repo.checkout + ".zip";
+		url = addProtocol(repo.host) + '/' + repo.owner + '/' + repo.name + '/get/' + repo.checkout + '.zip';
 
-	return url
+	return url;
 }
 
 /**
@@ -198,10 +198,10 @@ function oschina(repo, clone) {
 	clone = true;
 
 	if (clone)
-		url = addProtocol(repo.host) + "/" + repo.owner + "/" + repo.name;
-		// url = "git@" + repo.host + ":" + repo.owner + "/" + repo.name + ".git";
+		url = addProtocol(repo.host) + '/' + repo.owner + '/' + repo.name;
+		// url = 'git@' + repo.host + ':' + repo.owner + '/' + repo.name + '.git';
 	else
-		url = addProtocol(repo.host) + "/" + repo.owner + "/" + repo.name + "/repository/archive/" + repo.checkout;
+		url = addProtocol(repo.host) + '/' + repo.owner + '/' + repo.name + '/repository/archive/' + repo.checkout;
 
-	return {url, clone}
+	return {url, clone};
 }

@@ -41,7 +41,7 @@ function pack(target, dest, opts) {
 	const config = utils.load(impackFile);
 	let components = config.comps || config.components || config.deps || config.dependencies;
 	if (!components) {
-		throw new Error('Property "components" is required')
+		throw new Error('Property "components" is required');
 	}
 	components = utils.resolveComponents(components);
 	return PromiseA.map(_.toPairs(components), ([name, url]) => {
@@ -56,7 +56,7 @@ function pack(target, dest, opts) {
 			cmd.push('--ignore-scripts');
 		}
 
-		return PromiseA.fromCallback(cb => exec(cmd.join(' '), {cwd: dir}))
+		return PromiseA.fromCallback(cb => exec(cmd.join(' '), {cwd: dir}, cb))
 			.catch(e => console.error(e.message));
 	});
 }
