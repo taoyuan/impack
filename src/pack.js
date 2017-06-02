@@ -57,7 +57,8 @@ function pack(target, dest, opts) {
 		}
 
 		return PromiseA.fromCallback(cb => exec(cmd.join(' '), {cwd: dir}, cb))
-			.catch(e => console.error(e.message));
+			.catch(e => console.error(e.message))
+			.thenReturn(dir);
 	});
 }
 
