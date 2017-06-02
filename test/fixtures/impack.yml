@@ -1,0 +1,12 @@
+name: oodobot-os
+version: 1.0.0
+components:
+  config: oschina:oodolabs/oodobot-config#dev
+  schemas: github:oodolabs/oodo-schemas
+  modules:
+    oodobot-utils: oschina:oodolabs/oodobot-utils#dev
+    oodobot-client: oschina:oodolabs/oodobot-client#dev
+    mqtt-bridge: oschina:oodolabs/mqtt-bridge#dev
+    wlanup: oschina:oodolabs/wlanupd
+  drivers:
+    driver-printer: oschina:oodolabs/driver-printer

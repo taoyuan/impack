@@ -1,0 +1,58 @@
+{
+  "private": true,
+  "name": "impack",
+  "version": "0.0.0",
+  "description": "",
+  "main": "./src/index.js",
+  "jsnext:main": "./src/index.js",
+  "scripts": {
+    "lint": "eslint src test",
+    "test": "npm run lint && nyc mocha test/**/*.test.js",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/taoyuan/impack"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Yuan Tao",
+    "email": "towyuan@outlook.com",
+    "website": ""
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/taoyuan/impack/issues"
+  },
+  "homepage": "https://github.com/taoyuan/impack#readme",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "debug": "^2.6.8",
+    "download": "^6.2.2",
+    "fs-extra": "^3.0.1",
+    "git-clone": "^0.1.0",
+    "js-yaml": "^3.8.4",
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "chai": "^4.0.1",
+    "coveralls": "^2.13.1",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-mocha": "^4.9.0",
+    "eslint-plugin-react": "^7.0.1",
+    "mocha": "^3.4.2",
+    "nyc": "^11.0.1",
+    "sinon": "^2.3.2",
+    "sinon-chai": "^2.10.0",
+    "xo": "^0.18.2"
+  },
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "text"
+    ]
+  }
+}
