@@ -1,0 +1,11 @@
+#
+# Start services
+#
+{{#each components}}
+	{{#if service}}
+pushd {{stagepath}}
+pm2 start process.yml --env production
+popd
+	{{/if}}
+{{/each}}
+pm2 save

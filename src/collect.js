@@ -4,34 +4,25 @@ const _ = require('lodash');
 const fs = require('fs-extra');
 const path = require('path');
 const PromiseA = require('bluebird');
-const exec = require('child_process').exec;
 const download = require('./download');
 const utils = require('./utils');
 
 const POSSIBLE_IMPACK_FILES = ['impack.json', 'impack.yaml', 'impack.yml'];
-const NPM_INSTALL = 'npm install --unsafe-perm --no-optional --registry https://registry.npm.taobao.org';
 
 /**
  *
- * @param {String} target
- * @param {String|Object} [dest]
- * @param {Object} [opts]
- * @param {Boolean} [opts.ignoreScripts]
+ * @param {String} source The impack file or directory contains the impack file
+ * @param {String|Object} [dest] The destination directory. Default is .impack in current directory.
+ * @return {Promise<Array>}
  */
-function pack(target, dest, opts) {
-	if (_.isObject(dest)) {
-		opts = dest;
-		dest = null;
-	}
-	opts = opts || {};
-
-	let impackFile = target;
-	const stats = fs.statSync(target);
+function pack(source, dest) {
+	let impackFile = source;
+	const stats = fs.statSync(source);
 	if (stats.isDirectory()) {
-		impackFile = utils.findFile(target, POSSIBLE_IMPACK_FILES);
+		impackFile = utils.findFile(source, POSSIBLE_IMPACK_FILES);
 	}
 	if (!impackFile) {
-		throw new Error('Can not find impack file in: ' + target);
+		throw new Error('Can not find impack file in: ' + source);
 	}
 	const dir = path.dirname(impackFile);
 	if (!dest) {
@@ -50,15 +41,6 @@ function pack(target, dest, opts) {
 			fs.ensureDirSync(output);
 		}
 		return download(url, path.resolve(dest, output)).then(() => output);
-	}).map(dir => {
-		const cmd = [NPM_INSTALL];
-		if (opts.ignoreScripts) {
-			cmd.push('--ignore-scripts');
-		}
-
-		return PromiseA.fromCallback(cb => exec(cmd.join(' '), {cwd: dir}, cb))
-			.catch(e => console.error(e.message))
-			.thenReturn(dir);
 	});
 }
 

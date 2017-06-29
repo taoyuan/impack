@@ -1,0 +1,9 @@
+#
+# Running scripts
+#
+{{#each entries}}
+# {{name}}
+pushd {{stagepath}}
+{{script}}
+popd
+{{/each}}

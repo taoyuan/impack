@@ -1,0 +1,9 @@
+#
+# Rebuild components
+#
+{{#each components}}
+# {{name}}
+pushd {{stagepath}}
+npm rebuild --unsafe-perm
+popd
+{{/each}}

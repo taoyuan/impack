@@ -1,5 +1,7 @@
 name: impack
 components:
   lodash: github:lodash/lodash
-  modules:
+  a:
     bluebird: github:petkaantonov/bluebird
+  b:
+    debug: github:visionmedia/debug
