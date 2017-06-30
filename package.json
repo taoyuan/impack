@@ -1,11 +1,11 @@
 {
   "name": "impack",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "An application packager for nodejs",
   "main": "lib/index.js",
   "jsnext:main": "lib/index.js",
   "scripts": {
-    "lint": "eslint src test",
+    "lint": "eslint lib test",
     "test": "npm run lint && nyc mocha test/**/*.test.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },

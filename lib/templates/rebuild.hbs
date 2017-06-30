@@ -3,7 +3,7 @@
 #
 {{#each components}}
 # {{name}}
-pushd {{stagepath}}
+pushd {{packpath}}
 npm rebuild --unsafe-perm
 popd
 {{/each}}

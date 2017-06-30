@@ -3,7 +3,7 @@
 #
 {{#each components}}
 	{{#if service}}
-pushd {{stagepath}}
+pushd {{packpath}}
 pm2 start process.yml --env production
 popd
 	{{/if}}

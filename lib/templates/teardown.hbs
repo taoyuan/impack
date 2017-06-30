@@ -1,7 +1,7 @@
 # Teardown services
 {{#each components}}
 	{{#if service}}
-pushd {{stagepath}}
+pushd {{packpath}}
 pm2 delete process.yml
 popd
 	{{/if}}
