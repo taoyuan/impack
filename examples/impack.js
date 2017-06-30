@@ -7,11 +7,10 @@ const packer = new Packer(__dirname);
 (async() => {
 	try {
 		await packer.collect();
-		const output = await packer.pack();
-		console.log(output);
+		await packer.npm();
+		await packer.pack();
 	} catch (e) {
 		console.error(e);
 		process.exit(1);
 	}
 })();
-
