@@ -1,7 +1,9 @@
-name: impack
+name: example
+version: 1.0.0
 components:
   lodash: github:lodash/lodash
   a:
-    bluebird: github:petkaantonov/bluebird
-  b:
     debug: github:visionmedia/debug
+  b:
+    mqtt-bridge: oschina:oodolabs/mqtt-bridge
+    oodobot-client: oschina:oodolabs/oodobot-client
