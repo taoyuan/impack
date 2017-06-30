@@ -4,7 +4,7 @@
 {{#each components}}
 	{{#if service}}
 pushd {{packpath}}
-pm2 start process.yml --env production
+pm2 start {{service}} --env production
 popd
 	{{/if}}
 {{/each}}

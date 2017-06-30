@@ -1,7 +1,0 @@
-# Start services
-{{#each services}}
-pushd {{cwd}}
-pm2 start process.yml --env production
-popd
-{{/each}}
-pm2 save

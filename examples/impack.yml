@@ -2,11 +2,8 @@ name: example
 version: 1.0.0
 description: This is an example project for impack
 maintainer: Yuan Tao
-url: https://github.com/taoyaun/impack
+url: https://github.com/taoyaun/impack-example
 components:
-  lodash: github:lodash/lodash
-  a:
-    debug: github:visionmedia/debug
-  b:
-    mqtt-bridge: oschina:oodolabs/mqtt-bridge
-    oodobot-client: oschina:oodolabs/oodobot-client
+  mod-a: github:taoyuan/impack-example-mod-a
+  modules:
+    mod-b: github:taoyuan/impack-example-mod-b

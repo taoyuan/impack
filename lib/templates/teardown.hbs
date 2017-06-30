@@ -2,7 +2,7 @@
 {{#each components}}
 	{{#if service}}
 pushd {{packpath}}
-pm2 delete process.yml
+pm2 delete {{service}}
 popd
 	{{/if}}
 {{/each}}
