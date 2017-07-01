@@ -1,6 +1,6 @@
 {
   "name": "impack",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "An application packager for nodejs",
   "main": "lib/index.js",
   "jsnext:main": "lib/index.js",
