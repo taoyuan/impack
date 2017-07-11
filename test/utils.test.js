@@ -9,7 +9,7 @@
 
 const {assert} = require('chai');
 const path = require('path');
-const utils = require('../src/utils');
+const utils = require('../lib/utils');
 
 describe('utils', () => {
 	it('#resolveComponents', () => {
