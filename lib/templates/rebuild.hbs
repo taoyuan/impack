@@ -2,8 +2,8 @@
 # Rebuild components
 #
 {{#each components}}
-# {{name}}
-pushd {{packpath}}
+# {{{name}}}
+pushd {{{packpath}}}
 npm rebuild --unsafe-perm
 popd
 {{/each}}

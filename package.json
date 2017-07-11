@@ -38,6 +38,7 @@
     "lodash": "^4.17.4"
   },
   "devDependencies": {
+    "@types/inflection": "^1.5.28",
     "chai": "^4.0.2",
     "coveralls": "^2.13.1",
     "eslint": "^4.1.1",

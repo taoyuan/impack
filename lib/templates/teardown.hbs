@@ -1,8 +1,8 @@
 # Teardown services
 {{#each components}}
 	{{#if service}}
-pushd {{packpath}}
-pm2 delete {{service}}
+pushd {{{packpath}}}
+pm2 delete {{{service}}}
 popd
 	{{/if}}
 {{/each}}

@@ -3,8 +3,8 @@
 #
 {{#each components}}
 	{{#if service}}
-pushd {{packpath}}
-pm2 start {{service}} --env production
+pushd {{{packpath}}}
+pm2 start {{{service}}} --env production
 popd
 	{{/if}}
 {{/each}}
