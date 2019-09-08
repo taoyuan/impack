@@ -3,7 +3,7 @@
 [![NPM version](http://img.shields.io/npm/v/impack.svg?style=flat-square)](https://www.npmjs.com/package/impack)
 [![NPM downloads](http://img.shields.io/npm/dm/impack.svg?style=flat-square)](https://www.npmjs.com/package/impack)
 [![Build Status](http://img.shields.io/travis/taoyuan/impack/master.svg?style=flat-square)](https://travis-ci.org/taoyuan/impack)
-[![Coverage Status](https://img.shields.io/coveralls/taoyuan/impack.svg?style=flat-square)](https://coveralls.io/taoyuan/impack)
+[![Coverage Status](https://img.shields.io/coveralls/taoyuan/impack.svg?style=flat-square)](https://coveralls.io/taoyuan/impack) [![Greenkeeper badge](https://badges.greenkeeper.io/taoyuan/impack.svg)](https://greenkeeper.io/)
 
 > An application packager for nodejs
 
